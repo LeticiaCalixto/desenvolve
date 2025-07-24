@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controllers/login_controller.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/social_button.dart';
+import '../../controllers/login_controller.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/social_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -76,35 +76,35 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Google Button
-              Consumer<LoginController>(
-                builder: (context, controller, child) {
-                  return SocialButton(
-                    text: 'Entrar com o Google',
-                    icon: Icons.g_mobiledata,
-                    backgroundColor: Colors.white,
-                    textColor: const Color(0xFF2C3E50),
-                    borderColor: const Color(0xFFE0E0E0),
-                    isLoading: controller.isLoading,
-                    onPressed: () => controller.signInWithGoogle(),
-                  );
-                },
-              ),
+              // Consumer<LoginController>(
+              //   builder: (context, controller, child) {
+              //     return SocialButton(
+              //       text: 'Entrar com o Google',
+              //       icon: Icons.g_mobiledata,
+              //       backgroundColor: Colors.white,
+              //       textColor: const Color(0xFF2C3E50),
+              //       borderColor: const Color(0xFFE0E0E0),
+              //       isLoading: controller.isLoading,
+              //       onPressed: () => controller.signInWithGoogle(),
+              //     );
+              //   },
+              // ),
 
               const SizedBox(height: 16),
 
               // Facebook Button
-              Consumer<LoginController>(
-                builder: (context, controller, child) {
-                  return SocialButton(
-                    text: 'Entrar com o Facebook',
-                    icon: Icons.facebook,
-                    backgroundColor: const Color(0xFF1877F2),
-                    textColor: Colors.white,
-                    isLoading: controller.isLoading,
-                    onPressed: () => controller.signInWithFacebook(),
-                  );
-                },
-              ),
+              // Consumer<LoginController>(
+              //   builder: (context, controller, child) {
+              //     return SocialButton(
+              //       text: 'Entrar com o Facebook',
+              //       icon: Icons.facebook,
+              //       backgroundColor: const Color(0xFF1877F2),
+              //       textColor: Colors.white,
+              //       isLoading: controller.isLoading,
+              //       onPressed: () => controller.signInWithFacebook(),
+              //     );
+              //   },
+              // ),
 
               const SizedBox(height: 16),
 
@@ -131,29 +131,29 @@ class LoginPage extends StatelessWidget {
               ),
 
               // Error Message
-              Consumer<LoginController>(
-                builder: (context, controller, child) {
-                  if (controller.errorMessage != null) {
-                    return Container(
-                      margin: const EdgeInsets.only(top: 16),
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade50,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.red.shade200),
-                      ),
-                      child: Text(
-                        controller.errorMessage!,
-                        style: TextStyle(
-                          color: Colors.red.shade700,
-                          fontSize: 14,
-                        ),
-                      ),
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
+              // Consumer<LoginController>(
+              //   builder: (context, controller, child) {
+              //     if (controller.errorMessage != null) {
+              //       return Container(
+              //         margin: const EdgeInsets.only(top: 16),
+              //         padding: const EdgeInsets.all(12),
+              //         decoration: BoxDecoration(
+              //           color: Colors.red.shade50,
+              //           borderRadius: BorderRadius.circular(8),
+              //           border: Border.all(color: Colors.red.shade200),
+              //         ),
+              //         child: Text(
+              //           controller.errorMessage!,
+              //           style: TextStyle(
+              //             color: Colors.red.shade700,
+              //             fontSize: 14,
+              //           ),
+              //         ),
+              //       );
+              //     }
+              //     return const SizedBox.shrink();
+              //   },
+              // ),
             ],
           ),
         ),
