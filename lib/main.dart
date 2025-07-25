@@ -1,8 +1,8 @@
-import 'package:desenvolve/app/presentation_layer/pages/auth/auth_page.dart';
+import 'package:desenvolve/app/core/routes/app_routes.dart';
+import 'package:desenvolve/app/core/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'app/core/injection_container.dart';
-import 'app/presentation_layer/pages/auth/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const LoginPage(),
+        initialRoute: AppRoutes.login,
+        onGenerateRoute: RouteGenerator.generateRoute,
         debugShowCheckedModeBanner: false,
       ),
     );

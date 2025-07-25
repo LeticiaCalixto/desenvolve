@@ -1,3 +1,4 @@
+import 'package:desenvolve/app/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/login_controller.dart';
@@ -83,7 +84,8 @@ class LoginPage extends StatelessWidget {
                 textColor: const Color(0xFF2C3E50),
                 borderColor: const Color(0xFFE0E0E0),
                 isLoading: false,
-                onPressed: () => {},
+                onPressed: () =>
+                    {Navigator.of(context).pushNamed(AppRoutes.home)},
               ),
 
               const SizedBox(height: 16),
@@ -190,11 +192,12 @@ class LoginPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
-              context.read<LoginController>().signInWithEmail(
-                    emailController.text,
-                    passwordController.text,
-                  );
+              Navigator.of(context).pushNamed(AppRoutes.home);
+              // Navigator.pop(context);
+              // context.read<LoginController>().signInWithEmail(
+              //       emailController.text,
+              //       passwordController.text,
+              //     );
             },
             child: const Text('Entrar'),
           ),
