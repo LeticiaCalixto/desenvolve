@@ -1,7 +1,5 @@
+import 'package:desenvolve/app/presentation_layer/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import '../../controllers/login_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,149 +7,163 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              const Text(
-                'Olá,',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                'Olá, Maria!',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Veja como está seu filho está crescendo hoje!',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 28),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Image.asset(
-                  'assets/images/mother.png',
-                  width: 300,
-                  height: 300,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _showEmailDialog(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Entrar com E-mail'),
-        backgroundColor: Colors.white,
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'E-mail',
-                border: OutlineInputBorder(),
+            const Text(
+              'Biblioteca de\nSaúde Infantil',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
               ),
-              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                labelText:
+                    'Digite aqui o que procura\n(ex. febre, vacinaçao, sono,...)',
+                prefixIcon: const Icon(Icons.search),
+                fillColor: Color.fromARGB(255, 238, 238, 234),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                childAspectRatio: 1,
+              ),
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Card(
+                  color: _getColorForIndex(index),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      print('Botão ${index + 1} pressionado');
+                    },
+                    borderRadius: BorderRadius.circular(12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          _getIconForIndex(
+                              index), // Pega o ícone correspondente
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          _getLabelForIndex(
+                              index), // Pega o texto correspondente
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Senha',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
+            CustomButton(
+              text: 'Dicas para aliviar a febre',
+              backgroundColor: Color.fromARGB(255, 239, 229, 240),
+              textColor: Colors.black,
+              isLoading: false,
+              onPressed: () => {},
+            ),
+            const SizedBox(height: 16),
+            CustomButton(
+              text: 'Calendário vacinal',
+              backgroundColor: Color.fromARGB(255, 239, 229, 240),
+              textColor: Colors.black,
+              isLoading: false,
+              onPressed: () => {},
             ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Navigator.pop(context);
-              // context.read<LoginController>().signInWithEmail(
-              //       emailController.text,
-              //       passwordController.text,
-              //     );
-            },
-            child: const Text('Entrar'),
-          ),
-        ],
       ),
     );
   }
 
-  void _showCreateAccountDialog(BuildContext context) {
-    // Similar dialog for account creation
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-          content: Text('Funcionalidade de criar conta em desenvolvimento')),
-    );
+  // Função para obter o ícone baseado no índice
+  IconData _getIconForIndex(int index) {
+    switch (index) {
+      case 0:
+        return Icons.local_hospital; // Ícone de Doenças Comuns
+      case 1:
+        return Icons.warning; // Ícone de Sintomas de Alerta
+      case 2:
+        return Icons.vaccines; // Ícone de Vacinas
+      case 3:
+        return Icons.fastfood; // Ícone de Alimentação Nutritiva
+      case 4:
+        return Icons.child_care; // Ícone de Desenvolvimento e Comportamento
+      case 5:
+        return Icons.nightlight_round; // Ícone de Cuidados com o Sono
+      default:
+        return Icons.help_outline; // Caso não encontre
+    }
   }
 
-  void _showForgotPasswordDialog(BuildContext context) {
-    final emailController = TextEditingController();
+  // Função para obter o texto baseado no índice
+  String _getLabelForIndex(int index) {
+    switch (index) {
+      case 0:
+        return 'Doenças Comuns';
+      case 1:
+        return 'Sintomas de Alerta';
+      case 2:
+        return 'Vacinas';
+      case 3:
+        return 'Alimentação Nutritiva';
+      case 4:
+        return 'Desenvolvimento e Comportamento';
+      case 5:
+        return 'Cuidados com o Sono';
+      default:
+        return '';
+    }
+  }
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Redefinir Senha'),
-        content: TextField(
-          controller: emailController,
-          decoration: const InputDecoration(
-            labelText: 'E-mail',
-            border: OutlineInputBorder(),
-          ),
-          keyboardType: TextInputType.emailAddress,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context
-                  .read<LoginController>()
-                  .resetPassword(emailController.text);
-            },
-            child: const Text('Enviar'),
-          ),
-        ],
-      ),
-    );
+  Color _getColorForIndex(int index) {
+    switch (index) {
+      case 0:
+        return Color.fromARGB(255, 225, 234, 149); // Cor para Doenças Comuns
+      case 1:
+        return Color.fromARGB(255, 232, 142, 86); // Cor para Sintomas de Alerta
+      case 2:
+        return Color.fromARGB(255, 131, 200, 203); // Cor para Vacinas
+      case 3:
+        return Color.fromARGB(
+            255, 180, 148, 75); // Cor para Alimentação Nutritiva
+      case 4:
+        return Color.fromARGB(
+            255, 84, 125, 238); // Cor para Desenvolvimento e Comportamento
+      case 5:
+        return Color.fromARGB(
+            255, 135, 99, 196); // Cor para Cuidados com o Sono
+      default:
+        return Colors.grey; // Cor padrão
+    }
   }
 }

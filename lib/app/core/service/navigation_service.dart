@@ -31,4 +31,21 @@ class NavigationService {
   static bool canGoBack() {
     return navigator!.canPop();
   }
+
+  // Método para navegar mantendo o bottom navigation
+  static Future<dynamic> navigateWithBottomNav(String routeName,
+      {Object? arguments}) {
+    return navigator!.pushNamed(routeName, arguments: arguments);
+  }
+
+  // Método para verificar se a rota atual deve mostrar bottom navigation
+  static bool shouldShowBottomNavigation(String? routeName) {
+    const routesWithoutBottomNav = [
+      '/login',
+      '/onboarding',
+      '/splash',
+    ];
+
+    return routeName != null && !routesWithoutBottomNav.contains(routeName);
+  }
 }

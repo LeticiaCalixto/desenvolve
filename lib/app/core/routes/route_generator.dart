@@ -1,5 +1,4 @@
 import 'package:desenvolve/app/presentation_layer/pages/auth/login_page.dart';
-import 'package:desenvolve/app/presentation_layer/pages/home/home_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
@@ -15,31 +14,7 @@ class RouteGenerator {
 
       case AppRoutes.home:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
-          settings: settings,
-        );
-
-      case AppRoutes.healthLibrary:
-        return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 4),
-          settings: settings,
-        );
-
-      case AppRoutes.activities:
-        return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 1),
-          settings: settings,
-        );
-
-      case AppRoutes.milestones:
-        return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 2),
-          settings: settings,
-        );
-
-      case AppRoutes.profile:
-        return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 3),
+          builder: (_) => const MainNavigationPage(initialIndex: 0),
           settings: settings,
         );
 
