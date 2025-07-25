@@ -10,18 +10,18 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F8F5),
+      backgroundColor: Color.fromARGB(255, 190, 229, 221),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 20),
 
               // Logo
               Container(
-                width: 80,
-                height: 80,
+                width: 120,
+                height: 120,
                 decoration: const BoxDecoration(
                   color: Color(0xFF4ECDC4),
                   shape: BoxShape.circle,
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
                 child: const Icon(
                   Icons.eco,
                   color: Colors.white,
-                  size: 40,
+                  size: 80,
                 ),
               ),
 
@@ -39,8 +39,8 @@ class LoginPage extends StatelessWidget {
               const Text(
                 'Desenvolve+',
                 style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 52,
+                  fontWeight: FontWeight.w600,
                   color: Color(0xFFFF6B6B),
                 ),
               ),
@@ -48,63 +48,55 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 8),
 
               // Subtitle
-              const Text(
-                'Desenvolvimento\ninfantil na palma\nda mão',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF2C3E50),
-                  height: 1.4,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const Text(
+                  'Desenvolvimento infantil na palma da mão',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF2C3E50),
+                    height: 1.4,
+                  ),
                 ),
               ),
 
-              const SizedBox(height: 48),
+              const SizedBox(height: 28),
 
               // Email Button
-              Consumer<LoginController>(
-                builder: (context, controller, child) {
-                  return CustomButton(
-                    text: 'Entrar com E-mail',
-                    backgroundColor: const Color(0xFF4ECDC4),
-                    textColor: Colors.white,
-                    isLoading: controller.isLoading,
-                    onPressed: () => _showEmailDialog(context),
-                  );
-                },
+              CustomButton(
+                text: 'Entrar com E-mail',
+                backgroundColor: const Color(0xFF4ECDC4),
+                textColor: Colors.white,
+                isLoading: false,
+                onPressed: () => _showEmailDialog(context),
               ),
 
               const SizedBox(height: 16),
 
               // Google Button
-              // Consumer<LoginController>(
-              //   builder: (context, controller, child) {
-              //     return SocialButton(
-              //       text: 'Entrar com o Google',
-              //       icon: Icons.g_mobiledata,
-              //       backgroundColor: Colors.white,
-              //       textColor: const Color(0xFF2C3E50),
-              //       borderColor: const Color(0xFFE0E0E0),
-              //       isLoading: controller.isLoading,
-              //       onPressed: () => controller.signInWithGoogle(),
-              //     );
-              //   },
-              // ),
+              SocialButton(
+                text: 'Entrar com o Google',
+                icon: Icons.g_mobiledata,
+                backgroundColor: Colors.white,
+                textColor: const Color(0xFF2C3E50),
+                borderColor: const Color(0xFFE0E0E0),
+                isLoading: false,
+                onPressed: () => {},
+              ),
 
               const SizedBox(height: 16),
 
               // Facebook Button
-              // Consumer<LoginController>(
-              //   builder: (context, controller, child) {
-              //     return SocialButton(
-              //       text: 'Entrar com o Facebook',
-              //       icon: Icons.facebook,
-              //       backgroundColor: const Color(0xFF1877F2),
-              //       textColor: Colors.white,
-              //       isLoading: controller.isLoading,
-              //       onPressed: () => controller.signInWithFacebook(),
-              //     );
-              //   },
-              // ),
+              SocialButton(
+                text: 'Entrar com o Facebook',
+                icon: Icons.facebook,
+                backgroundColor: const Color(0xFF1877F2),
+                textColor: Colors.white,
+                isLoading: false,
+                onPressed: () => {},
+              ),
 
               const SizedBox(height: 16),
 
