@@ -1,6 +1,7 @@
 import 'package:desenvolve/app/presentation_layer/pages/auth/login_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/alert_symptoms_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/disease_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/home/components/vaccination_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
@@ -29,6 +30,12 @@ class RouteGenerator {
       case AppRoutes.alertSymptoms:
         return MaterialPageRoute(
           builder: (_) => const AlertSymptomsPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.vaccination:
+        return MaterialPageRoute(
+          builder: (_) => const VaccinationPage(),
           settings: settings,
         );
 

@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                         Navigator.of(context)
                             .pushNamed(AppRoutes.alertSymptoms);
                       } else if (index == 2) {
-                        // Navegar para a página de Vacinas
+                        Navigator.of(context).pushNamed(AppRoutes.vaccination);
                       } else if (index == 3) {
                         // Navegar para a página de Alimentação Nutritiva
                       } else if (index == 4) {
