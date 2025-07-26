@@ -1,4 +1,6 @@
 import 'package:desenvolve/app/presentation_layer/pages/auth/login_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/home/components/alert_symptoms_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/home/components/disease_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
@@ -15,6 +17,24 @@ class RouteGenerator {
       case AppRoutes.home:
         return MaterialPageRoute(
           builder: (_) => const MainNavigationPage(initialIndex: 0),
+          settings: settings,
+        );
+
+      case AppRoutes.disease:
+        return MaterialPageRoute(
+          builder: (_) => DiseasePage(),
+          settings: settings,
+        );
+
+      case AppRoutes.alertSymptoms:
+        return MaterialPageRoute(
+          builder: (_) => const AlertSymptomsPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.milestones:
+        return MaterialPageRoute(
+          builder: (_) => const MainNavigationPage(initialIndex: 2),
           settings: settings,
         );
 
@@ -42,7 +62,7 @@ class RouteGenerator {
       builder: (_) => Scaffold(
         appBar: AppBar(title: const Text('Erro')),
         body: const Center(
-          child: Text('Página não encontrada'),
+          child: Text('Página em construção!'),
         ),
       ),
     );

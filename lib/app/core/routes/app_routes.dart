@@ -6,7 +6,8 @@ class AppRoutes {
 
   // Routes with bottom navigation (main tabs)
   static const String home = '/home';
-  static const String activities = '/activities';
+  static const String disease = '/disease';
+  static const String alertSymptoms = '/alert-symptoms';
   static const String milestones = '/milestones';
   static const String profile = '/profile';
   static const String healthLibrary = '/health-library';

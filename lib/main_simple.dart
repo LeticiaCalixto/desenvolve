@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     switch (currentRoute) {
       case AppRoutes.home:
         return 0;
-      case AppRoutes.activities:
+      case AppRoutes.disease:
         return 1;
       case AppRoutes.milestones:
         return 2;
@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
           NavigationService.navigateAndReplace(AppRoutes.home);
           break;
         case 1:
-          NavigationService.navigateAndReplace(AppRoutes.activities);
+          NavigationService.navigateAndReplace(AppRoutes.disease);
           break;
         case 2:
           NavigationService.navigateAndReplace(AppRoutes.milestones);

@@ -1,3 +1,4 @@
+import 'package:desenvolve/app/core/routes/app_routes.dart';
 import 'package:desenvolve/app/presentation_layer/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -39,8 +40,8 @@ class HomePage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 6.0,
+                mainAxisSpacing: 6.0,
                 childAspectRatio: 1,
               ),
               itemCount: 6,
@@ -54,6 +55,20 @@ class HomePage extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('Botão ${index + 1} pressionado');
+                      if (index == 0) {
+                        Navigator.of(context).pushNamed(AppRoutes.disease);
+                      } else if (index == 1) {
+                        Navigator.of(context)
+                            .pushNamed(AppRoutes.alertSymptoms);
+                      } else if (index == 2) {
+                        // Navegar para a página de Vacinas
+                      } else if (index == 3) {
+                        // Navegar para a página de Alimentação Nutritiva
+                      } else if (index == 4) {
+                        // Navegar para a página de Desenvolvimento e Comportamento
+                      } else if (index == 5) {
+                        // Navegar para a página de Cuidados com o Sono
+                      }
                     },
                     borderRadius: BorderRadius.circular(12),
                     child: Column(
@@ -105,26 +120,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Função para obter o ícone baseado no índice
-  IconData _getIconForIndex(int index) {
-    switch (index) {
-      case 0:
-        return Icons.local_hospital; // Ícone de Doenças Comuns
-      case 1:
-        return Icons.warning; // Ícone de Sintomas de Alerta
-      case 2:
-        return Icons.vaccines; // Ícone de Vacinas
-      case 3:
-        return Icons.fastfood; // Ícone de Alimentação Nutritiva
-      case 4:
-        return Icons.child_care; // Ícone de Desenvolvimento e Comportamento
-      case 5:
-        return Icons.nightlight_round; // Ícone de Cuidados com o Sono
-      default:
-        return Icons.help_outline; // Caso não encontre
-    }
-  }
-
   // Função para obter o texto baseado no índice
   String _getLabelForIndex(int index) {
     switch (index) {
@@ -148,22 +143,44 @@ class HomePage extends StatelessWidget {
   Color _getColorForIndex(int index) {
     switch (index) {
       case 0:
-        return Color.fromARGB(255, 225, 234, 149); // Cor para Doenças Comuns
+        // Doenças Comuns (Amarelo Claro)
+        return const Color(0xFFFFDD6A); // Amarelo Claro
       case 1:
-        return Color.fromARGB(255, 232, 142, 86); // Cor para Sintomas de Alerta
+        // Sintomas de Alerta (Laranja)
+        return const Color(0xFFFF6F6F); // Laranja
       case 2:
-        return Color.fromARGB(255, 131, 200, 203); // Cor para Vacinas
+        // Vacinas (Azul Claro)
+        return const Color(0xFF72B7E2); // Azul Claro
       case 3:
-        return Color.fromARGB(
-            255, 180, 148, 75); // Cor para Alimentação Nutritiva
+        // Alimentação e Nutrição (Verde Claro)
+        return const Color(0xFFB8D8B8); // Verde Claro
       case 4:
-        return Color.fromARGB(
-            255, 84, 125, 238); // Cor para Desenvolvimento e Comportamento
+        // Desenvolvimento e Comportamento (Azul Claro)
+        return const Color(0xFF6FA1D0); // Azul Claro
       case 5:
-        return Color.fromARGB(
-            255, 135, 99, 196); // Cor para Cuidados com o Sono
+        // Cuidados com o Sono (Roxo Claro)
+        return const Color(0xFFA1A6D9); // Roxo Claro
       default:
         return Colors.grey; // Cor padrão
+    }
+  }
+
+  IconData _getIconForIndex(int index) {
+    switch (index) {
+      case 0:
+        return Icons.local_hospital; // Ícone de Doenças Comuns
+      case 1:
+        return Icons.warning; // Ícone de Sintomas de Alerta
+      case 2:
+        return Icons.vaccines; // Ícone de Vacinas
+      case 3:
+        return Icons.fastfood; // Ícone de Alimentação e Nutrição
+      case 4:
+        return Icons.child_care; // Ícone de Desenvolvimento e Comportamento
+      case 5:
+        return Icons.nightlight_round; // Ícone de Cuidados com o Sono
+      default:
+        return Icons.help_outline; // Caso não encontre
     }
   }
 }
