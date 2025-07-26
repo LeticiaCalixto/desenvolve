@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                       } else if (index == 4) {
                         // Navegar para a página de Desenvolvimento e Comportamento
                       } else if (index == 5) {
-                        // Navegar para a página de Cuidados com o Sono
+                        Navigator.of(context).pushNamed(AppRoutes.SleepCare);
                       }
                     },
                     borderRadius: BorderRadius.circular(12),
