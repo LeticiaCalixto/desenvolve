@@ -14,26 +14,34 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Biblioteca de\nSaúde Infantil',
+              'Biblioteca de',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 36,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Color(0xFFFF6B6B),
+              ),
+            ),
+            const Text(
+              'Saúde Infantil',
+              style: TextStyle(
+                fontSize: 42,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFFFF6B6B),
               ),
             ),
             const SizedBox(height: 8),
-            TextField(
-              decoration: InputDecoration(
-                labelText:
-                    'Digite aqui o que procura\n(ex. febre, vacinaçao, sono,...)',
-                prefixIcon: const Icon(Icons.search),
-                fillColor: Color.fromARGB(255, 238, 238, 234),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
-                ),
-              ),
-            ),
+            // TextField(
+            //   decoration: InputDecoration(
+            //     labelText:
+            //         'Digite aqui o que procura\n(ex. febre, vacinaçao, sono,...)',
+            //     prefixIcon: const Icon(Icons.search),
+            //     fillColor: Color.fromARGB(255, 238, 238, 234),
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(12),
+            //       borderSide: BorderSide(color: Colors.grey.shade300),
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 24),
             GridView.builder(
               shrinkWrap: true,

@@ -77,35 +77,35 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(
-                icon: Icons.home_outlined,
-                activeIcon: Icons.home,
-                label: 'Início',
-                index: 0,
+              Expanded(
+                child: _buildNavItem(
+                  icon: Icons.menu_book_outlined,
+                  activeIcon: Icons.menu_book,
+                  label: 'Biblioteca',
+                  index: 4,
+                ),
               ),
-              _buildNavItem(
-                icon: Icons.extension_outlined,
-                activeIcon: Icons.extension,
-                label: 'Atividades',
-                index: 1,
+              // _buildNavItem(
+              //   icon: Icons.extension_outlined,
+              //   activeIcon: Icons.extension,
+              //   label: 'Atividades',
+              //   index: 1,
+              // ),
+              Expanded(
+                child: _buildNavItem(
+                  icon: Icons.home_outlined,
+                  activeIcon: Icons.home,
+                  label: 'Home',
+                  index: 0,
+                ),
               ),
-              _buildNavItem(
-                icon: Icons.timeline_outlined,
-                activeIcon: Icons.timeline,
-                label: 'Marcos',
-                index: 2,
-              ),
-              _buildNavItem(
-                icon: Icons.person_outline,
-                activeIcon: Icons.person,
-                label: 'Perfil',
-                index: 3,
-              ),
-              _buildNavItem(
-                icon: Icons.menu_book_outlined,
-                activeIcon: Icons.menu_book,
-                label: 'Biblioteca',
-                index: 4,
+              Expanded(
+                child: _buildNavItem(
+                  icon: Icons.person_outline,
+                  activeIcon: Icons.person,
+                  label: 'Perfil',
+                  index: 3,
+                ),
               ),
             ],
           ),
@@ -136,9 +136,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         decoration: BoxDecoration(
-          color: isActive
-              ? const Color(0xFF4ECDC4).withOpacity(0.1)
-              : Colors.transparent,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -146,8 +144,9 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           children: [
             Icon(
               isActive ? activeIcon : icon,
-              color:
-                  isActive ? const Color(0xFF4ECDC4) : const Color(0xFF95A5A6),
+              color: isActive
+                  ? const Color(0xFF4ECDC4)
+                  : const Color.fromARGB(255, 138, 149, 147),
               size: 24,
             ),
             const SizedBox(height: 4),
@@ -158,7 +157,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 color: isActive
                     ? const Color(0xFF4ECDC4)
-                    : const Color(0xFF95A5A6),
+                    : const Color.fromARGB(255, 138, 149, 147),
               ),
             ),
           ],
