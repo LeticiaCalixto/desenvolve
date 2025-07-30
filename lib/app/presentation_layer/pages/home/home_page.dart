@@ -1,6 +1,7 @@
 import 'package:desenvolve/app/core/routes/app_routes.dart';
 import 'package:desenvolve/app/presentation_layer/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,40 +10,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'Biblioteca de',
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 fontSize: 36,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFFFF6B6B),
+                fontWeight: FontWeight.w800,
+                color: const Color(0xFFFF6B6B),
               ),
             ),
-            const Text(
+            Text(
               'Saúde Infantil',
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 fontSize: 42,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFFFF6B6B),
+                fontWeight: FontWeight.w800,
+                color: const Color(0xFFFF6B6B),
               ),
             ),
-            const SizedBox(height: 8),
-            // TextField(
-            //   decoration: InputDecoration(
-            //     labelText:
-            //         'Digite aqui o que procura\n(ex. febre, vacinaçao, sono,...)',
-            //     prefixIcon: const Icon(Icons.search),
-            //     fillColor: Color.fromARGB(255, 238, 238, 234),
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(12),
-            //       borderSide: BorderSide(color: Colors.grey.shade300),
-            //     ),
-            //   ),
-            // ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 4),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -85,19 +73,24 @@ class HomePage extends StatelessWidget {
                       children: [
                         Icon(
                           _getIconForIndex(
-                              index), // Pega o ícone correspondente
-                          size: 40,
-                          color: Colors.black,
+                            index,
+                          ), // Pega o ícone correspondente
+                          size: 60,
+                          color: Colors.white,
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          _getLabelForIndex(
-                              index), // Pega o texto correspondente
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            _getLabelForIndex(
+                              index,
+                            ), // Pega o texto correspondente
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -151,25 +144,19 @@ class HomePage extends StatelessWidget {
   Color _getColorForIndex(int index) {
     switch (index) {
       case 0:
-        // Doenças Comuns (Amarelo Claro)
-        return const Color(0xFFFFDD6A); // Amarelo Claro
+        return const Color(0xFFFFDD6A);
       case 1:
-        // Sintomas de Alerta (Laranja)
-        return const Color(0xFFFF6F6F); // Laranja
+        return const Color(0xFFFF6F6F);
       case 2:
-        // Vacinas (Azul Claro)
-        return const Color(0xFF72B7E2); // Azul Claro
+        return const Color(0xFF72B7E2);
       case 3:
-        // Alimentação e Nutrição (Verde Claro)
-        return const Color(0xFFB8D8B8); // Verde Claro
+        return const Color(0xFFB8D8B8);
       case 4:
-        // Desenvolvimento e Comportamento (Azul Claro)
-        return const Color(0xFF6FA1D0); // Azul Claro
+        return const Color(0xFF6FA1D0);
       case 5:
-        // Cuidados com o Sono (Roxo Claro)
-        return const Color(0xFFA1A6D9); // Roxo Claro
+        return const Color(0xFFA1A6D9);
       default:
-        return Colors.grey; // Cor padrão
+        return Colors.grey;
     }
   }
 
