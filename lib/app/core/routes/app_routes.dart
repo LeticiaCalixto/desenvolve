@@ -3,6 +3,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String onboarding = '/onboarding';
   static const String splash = '/splash';
+  static const String postLoginSplash = '/post-login-splash';
 
   // Routes with bottom navigation (main tabs)
   static const String home = '/home';
@@ -26,6 +27,7 @@ class AppRoutes {
       login,
       onboarding,
       splash,
+      postLoginSplash,
     ];
     return !routesWithoutBottomNav.contains(route);
   }

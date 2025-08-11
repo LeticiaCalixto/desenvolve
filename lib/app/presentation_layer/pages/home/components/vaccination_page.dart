@@ -94,7 +94,7 @@ class VaccinationPage extends StatelessWidget {
               age: item['age'] as String,
               vaccines: (item['vaccines'] as List<dynamic>).cast<String>(),
             );
-          }).toList(),
+          }),
         ],
       ),
     );
@@ -127,9 +127,7 @@ class _AgeGroupCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            ...vaccines
-                .map((vaccine) => _VaccineTile(vaccine: vaccine))
-                .toList(),
+            ...vaccines.map((vaccine) => _VaccineTile(vaccine: vaccine)),
           ],
         ),
       ),

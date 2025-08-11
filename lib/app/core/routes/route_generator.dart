@@ -4,6 +4,8 @@ import 'package:desenvolve/app/presentation_layer/pages/home/components/disease_
 import 'package:desenvolve/app/presentation_layer/pages/home/components/sleep_care_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/vaccination_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/main_navigation_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/profile/profile_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/splash/post_login_splash_page.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
 
@@ -16,9 +18,15 @@ class RouteGenerator {
           settings: settings,
         );
 
+      case AppRoutes.postLoginSplash:
+        return MaterialPageRoute(
+          builder: (_) => const PostLoginSplashPage(),
+          settings: settings,
+        );
+
       case AppRoutes.home:
         return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 0),
+          builder: (_) => const MainNavigationPage(initialIndex: 1),
           settings: settings,
         );
 
@@ -49,6 +57,12 @@ class RouteGenerator {
       case AppRoutes.milestones:
         return MaterialPageRoute(
           builder: (_) => const MainNavigationPage(initialIndex: 2),
+          settings: settings,
+        );
+
+      case AppRoutes.profile:
+        return MaterialPageRoute(
+          builder: (_) => const ProfilePage(),
           settings: settings,
         );
 

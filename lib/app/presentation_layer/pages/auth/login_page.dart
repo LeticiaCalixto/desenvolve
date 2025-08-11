@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 190, 229, 221),
+      backgroundColor: const Color.fromARGB(255, 190, 229, 221),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -84,8 +84,9 @@ class LoginPage extends StatelessWidget {
                 textColor: const Color(0xFF2C3E50),
                 borderColor: const Color(0xFFE0E0E0),
                 isLoading: false,
-                onPressed: () =>
-                    {Navigator.of(context).pushNamed(AppRoutes.home)},
+                onPressed: () => {
+                  Navigator.of(context).pushNamed(AppRoutes.postLoginSplash)
+                },
               ),
 
               const SizedBox(height: 16),
@@ -192,7 +193,7 @@ class LoginPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.home);
+              Navigator.of(context).pushNamed(AppRoutes.postLoginSplash);
               // Navigator.pop(context);
               // context.read<LoginController>().signInWithEmail(
               //       emailController.text,

@@ -1,4 +1,6 @@
 import 'package:desenvolve/app/presentation_layer/pages/home/home_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/profile/profile_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/library/library_page.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigationPage extends StatefulWidget {
@@ -6,7 +8,7 @@ class MainNavigationPage extends StatefulWidget {
 
   const MainNavigationPage({
     super.key,
-    this.initialIndex = 0,
+    this.initialIndex = 1,
   });
 
   @override
@@ -18,8 +20,9 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   late PageController _pageController;
 
   final List<Widget> _pages = [
+    const LibraryPage(),
     const HomePage(),
-    // Adicione outras páginas conforme necessário
+    const ProfilePage(),
   ];
 
   @override
@@ -60,6 +63,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   }
 
   Widget _buildBottomNavigationBar() {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -73,7 +78,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.02,
+            vertical: screenWidth * 0.02,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -82,21 +90,15 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   icon: Icons.menu_book_outlined,
                   activeIcon: Icons.menu_book,
                   label: 'Biblioteca',
-                  index: 4,
+                  index: 0,
                 ),
               ),
-              // _buildNavItem(
-              //   icon: Icons.extension_outlined,
-              //   activeIcon: Icons.extension,
-              //   label: 'Atividades',
-              //   index: 1,
-              // ),
               Expanded(
                 child: _buildNavItem(
                   icon: Icons.home_outlined,
                   activeIcon: Icons.home,
                   label: 'Home',
-                  index: 0,
+                  index: 1,
                 ),
               ),
               Expanded(
@@ -104,7 +106,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   icon: Icons.person_outline,
                   activeIcon: Icons.person,
                   label: 'Perfil',
-                  index: 3,
+                  index: 2,
                 ),
               ),
             ],
@@ -121,6 +123,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     required int index,
   }) {
     final isActive = _currentIndex == index;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
       onTap: () {
@@ -134,7 +137,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        padding: EdgeInsets.symmetric(
+          vertical: screenWidth * 0.02,
+          horizontal: screenWidth * 0.03,
+        ),
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(12),
@@ -147,13 +153,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               color: isActive
                   ? const Color(0xFF4ECDC4)
                   : const Color.fromARGB(255, 138, 149, 147),
-              size: 24,
+              size: screenWidth * 0.06,
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: screenWidth * 0.01),
             Text(
               label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: screenWidth * 0.03,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 color: isActive
                     ? const Color(0xFF4ECDC4)

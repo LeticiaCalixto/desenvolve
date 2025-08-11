@@ -42,6 +42,7 @@ class NavigationService {
   static bool shouldShowBottomNavigation(String? routeName) {
     const routesWithoutBottomNav = [
       '/login',
+      '/post-login-splash',
       '/onboarding',
       '/splash',
     ];

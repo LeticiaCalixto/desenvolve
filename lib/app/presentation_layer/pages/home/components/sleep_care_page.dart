@@ -35,11 +35,11 @@ class SleepCarePage extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             _InfoBlock(
               title: 'Importância do Sono',
               color: Color(0xFFFEF3C7),

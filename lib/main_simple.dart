@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   // Rotas que NÃO devem ter bottom navigation
   static const List<String> _routesWithoutBottomNav = [
     AppRoutes.login,
+    AppRoutes.postLoginSplash,
     '/splash',
     '/onboarding',
   ];

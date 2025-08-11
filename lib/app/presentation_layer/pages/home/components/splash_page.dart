@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -12,27 +13,27 @@ class SplashPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 24),
-            const Text(
+            Text(
               'Olá,',
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Olá, Maria!',
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Veja como está seu filho está crescendo hoje!',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 26,
                 fontWeight: FontWeight.w400,
                 color: Colors.black,
