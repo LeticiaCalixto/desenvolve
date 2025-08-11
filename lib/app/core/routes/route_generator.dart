@@ -1,6 +1,8 @@
 import 'package:desenvolve/app/presentation_layer/pages/auth/login_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/alert_symptoms_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/disease_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/home/components/nutrition_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/home/components/development_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/sleep_care_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/home/components/vaccination_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/main_navigation_page.dart';
@@ -45,6 +47,18 @@ class RouteGenerator {
       case AppRoutes.vaccination:
         return MaterialPageRoute(
           builder: (_) => const VaccinationPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.nutrition:
+        return MaterialPageRoute(
+          builder: (_) => const NutritionPage(),
+          settings: settings,
+        );
+
+      case AppRoutes.development:
+        return MaterialPageRoute(
+          builder: (_) => const DevelopmentPage(),
           settings: settings,
         );
 

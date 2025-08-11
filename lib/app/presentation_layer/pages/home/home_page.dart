@@ -320,10 +320,10 @@ class HomePage extends StatelessWidget {
         Navigator.of(context).pushNamed(AppRoutes.vaccination);
         break;
       case 3:
-        // Navegar para a página de Alimentação Nutritiva
+        Navigator.of(context).pushNamed(AppRoutes.nutrition);
         break;
       case 4:
-        // Navegar para a página de Desenvolvimento e Comportamento
+        Navigator.of(context).pushNamed(AppRoutes.development);
         break;
       case 5:
         Navigator.of(context).pushNamed(AppRoutes.SleepCare);

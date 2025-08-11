@@ -10,6 +10,8 @@ class AppRoutes {
   static const String disease = '/disease';
   static const String alertSymptoms = '/alert-symptoms';
   static const String vaccination = '/vaccination';
+  static const String nutrition = '/nutrition';
+  static const String development = '/development';
   static const String SleepCare = '/sleep-care';
   static const String milestones = '/milestones';
   static const String profile = '/profile';
