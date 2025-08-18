@@ -17,8 +17,8 @@ class _PostLoginSplashPageState extends State<PostLoginSplashPage> {
   }
 
   Future<void> _navigateToHome() async {
-    // Aguarda 1 segundo antes de navegar para a home
-    await Future.delayed(const Duration(seconds: 2));
+    // Aguarda 3 segundos antes de navegar para a home
+    await Future.delayed(const Duration(seconds: 3));
 
     if (mounted) {
       Navigator.of(context).pushReplacementNamed(AppRoutes.home);
@@ -53,7 +53,7 @@ class _PostLoginSplashPageState extends State<PostLoginSplashPage> {
                 SizedBox(height: screenHeight * 0.03),
                 _buildWelcomeCard(screenWidth),
                 SizedBox(height: screenHeight * 0.02),
-                _buildLoadingIndicator(screenWidth),
+                _buildImportantNotice(screenWidth),
                 SizedBox(height: screenHeight * 0.02),
                 _buildImageContainer(screenWidth),
               ],
@@ -174,6 +174,130 @@ class _PostLoginSplashPageState extends State<PostLoginSplashPage> {
     );
   }
 
+  Widget _buildImportantNotice(double screenWidth) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(screenWidth * 0.05),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFFE3F2FD), Color(0xFFBBDEFB)],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: const Color(0xFF2196F3),
+          width: 2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF2196F3).withOpacity(0.3),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Ícone de aviso
+          Container(
+            width: screenWidth * 0.12,
+            height: screenWidth * 0.12,
+            decoration: BoxDecoration(
+              color: const Color(0xFF2196F3),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF2196F3).withOpacity(0.4),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Icon(
+              Icons.info_outline,
+              color: Colors.white,
+              size: screenWidth * 0.07,
+            ),
+          ),
+          SizedBox(height: screenWidth * 0.03),
+
+          // Título do aviso
+          Text(
+            'AVISO GERAL',
+            style: GoogleFonts.nunito(
+              fontSize: screenWidth * 0.05,
+              fontWeight: FontWeight.w800,
+              color: const Color(0xFF1976D2),
+              letterSpacing: 1.2,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: screenWidth * 0.03),
+
+          // Texto do aviso
+          Container(
+            padding: EdgeInsets.all(screenWidth * 0.04),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                color: const Color(0xFF2196F3).withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+            child: Text(
+              'As informações aqui apresentadas têm caráter educativo e não substituem avaliação, diagnóstico ou tratamento médico. Para qualquer dúvida ou suspeita, procure sempre um profissional de saúde.',
+              style: GoogleFonts.poppins(
+                fontSize: screenWidth * 0.038,
+                color: const Color(0xFF37474F),
+                height: 1.6,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+          ),
+
+          SizedBox(height: screenWidth * 0.03),
+
+          // Ícones médicos
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(screenWidth * 0.02),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2196F3).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child:
+                    Text('🩺', style: TextStyle(fontSize: screenWidth * 0.06)),
+              ),
+              SizedBox(width: screenWidth * 0.03),
+              Container(
+                padding: EdgeInsets.all(screenWidth * 0.02),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2196F3).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child:
+                    Text('⚕️', style: TextStyle(fontSize: screenWidth * 0.06)),
+              ),
+              SizedBox(width: screenWidth * 0.03),
+              Container(
+                padding: EdgeInsets.all(screenWidth * 0.02),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2196F3).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child:
+                    Text('🏥', style: TextStyle(fontSize: screenWidth * 0.06)),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildLoadingIndicator(double screenWidth) {
     return Container(
       padding: EdgeInsets.all(screenWidth * 0.06),
@@ -193,7 +317,7 @@ class _PostLoginSplashPageState extends State<PostLoginSplashPage> {
       child: Column(
         children: [
           Text(
-            '✨ Preparando tudo para você... ✨',
+            '✨  ✨',
             style: GoogleFonts.poppins(
               fontSize: screenWidth * 0.045,
               fontWeight: FontWeight.w600,
