@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -143,7 +142,6 @@ class HomePage extends StatelessWidget {
   Widget _buildCategoryCard(
       BuildContext context, int index, double screenWidth) {
     final colors = _getGradientColorsForIndex(index);
-    final isLargeScreen = screenWidth > 600;
 
     return Container(
       decoration: BoxDecoration(

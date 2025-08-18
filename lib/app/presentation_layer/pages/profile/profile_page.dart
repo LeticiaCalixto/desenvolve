@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../domain_layer/entities/caregiver.dart';
 import '../../../domain_layer/entities/child.dart';
+import '../../../core/services/user_profile_service.dart';
 import 'add_child_page.dart';
 import 'child_details_page.dart';
 
@@ -54,6 +55,195 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Verificar se é enfermeira e mostrar a tela apropriada
+    if (UserProfileService.isNurse) {
+      return _buildNurseProfile(context);
+    }
+
+    // Tela de perfil normal para pais
+    return _buildParentProfile(context);
+  }
+
+  Widget _buildNurseProfile(BuildContext context) {
+    final user = UserProfileService.currentUser!;
+    final patients = UserProfileService.getNursePatients();
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FA),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF2196F3),
+        elevation: 0,
+        title: Text(
+          'Perfil Profissional',
+          style: GoogleFonts.nunito(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Header profissional
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFF2196F3), Color(0xFF1976D2)],
+                ),
+              ),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.medical_services,
+                      size: 50,
+                      color: user.primaryColor,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    user.name,
+                    style: GoogleFonts.nunito(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'COREN: 123456-SP',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                  ),
+                  Text(
+                    user.email,
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Estatísticas rápidas
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _buildNurseStatCard(
+                      '${patients.length}',
+                      'Pacientes\nAtivos',
+                      Icons.people,
+                      const Color(0xFF4CAF50),
+                      screenWidth,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildNurseStatCard(
+                      '3',
+                      'Consultas\nHoje',
+                      Icons.calendar_today,
+                      const Color(0xFF2196F3),
+                      screenWidth,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildNurseStatCard(
+                      '1',
+                      'Atenção\nEspecial',
+                      Icons.warning,
+                      const Color(0xFFFF9800),
+                      screenWidth,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Lista de pacientes
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Meus Pacientes',
+                    style: GoogleFonts.nunito(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2C3E50),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ...patients.map((patient) =>
+                      _buildNursePatientCard(context, patient, screenWidth)),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Ações rápidas
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Ações Rápidas',
+                    style: GoogleFonts.nunito(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2C3E50),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildNurseActionButton(
+                      'Nova Avaliação', Icons.add_circle, () {}, screenWidth),
+                  _buildNurseActionButton(
+                      'Relatórios', Icons.assessment, () {}, screenWidth),
+                  _buildNurseActionButton(
+                      'Agendar Consulta', Icons.schedule, () {}, screenWidth),
+                  _buildNurseActionButton(
+                      'Configurações', Icons.settings, () {}, screenWidth),
+                  _buildNurseActionButton(
+                    'Sair',
+                    Icons.logout,
+                    () {
+                      UserProfileService.clearUser();
+                      Navigator.of(context).pushReplacementNamed('/login');
+                    },
+                    screenWidth,
+                    isDestructive: true,
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildParentProfile(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
@@ -81,6 +271,191 @@ class _ProfilePageState extends State<ProfilePage> {
             // Children Section
             _buildChildrenSection(),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Métodos auxiliares para o perfil da enfermeira
+  Widget _buildNurseStatCard(String value, String label, IconData icon,
+      Color color, double screenWidth) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: color, size: 24),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            style: GoogleFonts.nunito(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFF2C3E50),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              fontSize: 11,
+              color: const Color(0xFF7F8C8D),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNursePatientCard(
+      BuildContext context, Map<String, dynamic> patient, double screenWidth) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 25,
+            backgroundColor: patient['status'] == 'urgente'
+                ? const Color(0xFFE74C3C)
+                : patient['status'] == 'atencao'
+                    ? const Color(0xFFFF9800)
+                    : const Color(0xFF4CAF50),
+            child: Text(
+              patient['avatar'] ??
+                  patient['name'].substring(0, 1).toUpperCase(),
+              style: GoogleFonts.nunito(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  patient['name'],
+                  style: GoogleFonts.nunito(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF2C3E50),
+                  ),
+                ),
+                Text(
+                  patient['age'],
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: const Color(0xFF7F8C8D),
+                  ),
+                ),
+                if (patient['status'] == 'urgente')
+                  Text(
+                    'Urgente - Requer atenção',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: const Color(0xFFE74C3C),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                else if (patient['status'] == 'atencao')
+                  Text(
+                    'Atenção especial',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: const Color(0xFFFF9800),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.chevron_right,
+            color: const Color(0xFF7F8C8D),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNurseActionButton(
+      String title, IconData icon, VoidCallback onTap, double screenWidth,
+      {bool isDestructive = false}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  color: isDestructive
+                      ? const Color(0xFFE74C3C)
+                      : const Color(0xFF2196F3),
+                  size: 24,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: GoogleFonts.nunito(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: isDestructive
+                          ? const Color(0xFFE74C3C)
+                          : const Color(0xFF2C3E50),
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right,
+                  color: const Color(0xFF7F8C8D),
+                  size: 20,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

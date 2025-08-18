@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../controllers/login_controller.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/social_button.dart';
+import '../../../core/services/user_profile_service.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -387,12 +388,32 @@ class LoginPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.postLoginSplash);
-              // Navigator.pop(context);
-              // context.read<LoginController>().signInWithEmail(
-              //       emailController.text,
-              //       passwordController.text,
-              //     );
+              final email = emailController.text.trim();
+              final password = passwordController.text;
+
+              // Validar login com email e senha
+              if (UserProfileService.validateLogin(email, password)) {
+                // Definir o perfil do usuário baseado no email
+                UserProfileService.setUserFromEmail(email);
+                Navigator.pop(context); // Fechar o dialog
+                Navigator.of(context).pushNamed(AppRoutes.postLoginSplash);
+              } else {
+                // Mostrar erro de credenciais inválidas
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text(
+                      'Email ou senha incorretos. Use um dos emails autorizados com a senha "1234".',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: const Color(0xFFE74C3C),
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    margin: const EdgeInsets.all(16),
+                  ),
+                );
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF4ECDC4),

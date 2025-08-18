@@ -4,6 +4,7 @@ import '../../domain_layer/usecases/sign_in_with_email_usecase.dart';
 import '../../domain_layer/usecases/sign_in_with_google_usecase.dart';
 import '../../domain_layer/usecases/sign_in_with_facebook_usecase.dart';
 import '../../domain_layer/usecases/reset_password_usecase.dart';
+import '../../core/services/user_profile_service.dart';
 
 class LoginController extends ChangeNotifier {
   final SignInWithEmailUseCase signInWithEmailUseCase;
@@ -42,6 +43,8 @@ class LoginController extends ChangeNotifier {
 
     try {
       _user = await signInWithEmailUseCase(email, password);
+      // Definir o perfil do usuário baseado no email
+      UserProfileService.setUserFromEmail(email);
       notifyListeners();
     } catch (e) {
       _setError(e.toString());
