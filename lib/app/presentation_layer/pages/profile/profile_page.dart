@@ -71,23 +71,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2196F3),
-        elevation: 0,
-        title: Text(
-          'Perfil Profissional',
-          style: GoogleFonts.nunito(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: [
-            // Header profissional
+            _buildHeader(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Header profissional
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -237,8 +229,41 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
             const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.05,
+        vertical: 20,
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.person,
+            size: MediaQuery.of(context).size.width * 0.07,
+            color: const Color(0xFF2196F3),
+          ),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+          Expanded(
+            child: Text(
+              'Perfil',
+              style: GoogleFonts.nunito(
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF2C3E50),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

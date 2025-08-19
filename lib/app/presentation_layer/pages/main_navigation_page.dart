@@ -1,6 +1,8 @@
 import 'package:desenvolve/app/presentation_layer/pages/home/home_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/profile/profile_page.dart';
 import 'package:desenvolve/app/presentation_layer/pages/library/library_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/notifications/notifications_page.dart';
+import 'package:desenvolve/app/presentation_layer/pages/contacts/contacts_page.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigationPage extends StatefulWidget {
@@ -8,7 +10,7 @@ class MainNavigationPage extends StatefulWidget {
 
   const MainNavigationPage({
     super.key,
-    this.initialIndex = 1,
+    this.initialIndex = 2,
   });
 
   @override
@@ -20,8 +22,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   late PageController _pageController;
 
   final List<Widget> _pages = [
+    const ContactsPage(),
     const LibraryPage(),
     const HomePage(),
+    const NotificationsPage(),
     const ProfilePage(),
   ];
 
@@ -79,18 +83,26 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.02,
-            vertical: screenWidth * 0.02,
+            horizontal: screenWidth * 0.01,
+            vertical: screenWidth * 0.015,
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Expanded(
+                child: _buildNavItem(
+                  icon: Icons.contacts_outlined,
+                  activeIcon: Icons.contacts,
+                  label: 'Contatos',
+                  index: 0,
+                ),
+              ),
               Expanded(
                 child: _buildNavItem(
                   icon: Icons.menu_book_outlined,
                   activeIcon: Icons.menu_book,
                   label: 'Biblioteca',
-                  index: 0,
+                  index: 1,
                 ),
               ),
               Expanded(
@@ -98,7 +110,15 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   icon: Icons.home_outlined,
                   activeIcon: Icons.home,
                   label: 'Home',
-                  index: 1,
+                  index: 2,
+                ),
+              ),
+              Expanded(
+                child: _buildNavItem(
+                  icon: Icons.notifications_outlined,
+                  activeIcon: Icons.notifications,
+                  label: 'Alertas',
+                  index: 3,
                 ),
               ),
               Expanded(
@@ -106,7 +126,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   icon: Icons.person_outline,
                   activeIcon: Icons.person,
                   label: 'Perfil',
-                  index: 2,
+                  index: 4,
                 ),
               ),
             ],
@@ -124,6 +144,27 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   }) {
     final isActive = _currentIndex == index;
     final screenWidth = MediaQuery.of(context).size.width;
+    
+    // Ajuste responsivo do tamanho da fonte baseado na largura da tela
+    double fontSize = screenWidth > 400 ? screenWidth * 0.03 : screenWidth * 0.025;
+    
+    // Labels mais curtos para telas pequenas
+    String displayLabel = label;
+    if (screenWidth < 380) {
+      switch (label) {
+        case 'Biblioteca':
+          displayLabel = 'Biblio';
+          break;
+        case 'Contatos':
+          displayLabel = 'Contato';
+          break;
+        case 'Alertas':
+          displayLabel = 'Alerta';
+          break;
+        default:
+          displayLabel = label;
+      }
+    }
 
     return GestureDetector(
       onTap: () {
@@ -138,8 +179,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: screenWidth * 0.02,
-          horizontal: screenWidth * 0.03,
+          vertical: screenWidth * 0.015,
+          horizontal: screenWidth * 0.01,
         ),
         decoration: BoxDecoration(
           color: Colors.transparent,
@@ -153,17 +194,22 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               color: isActive
                   ? const Color(0xFF4ECDC4)
                   : const Color.fromARGB(255, 138, 149, 147),
-              size: screenWidth * 0.06,
+              size: screenWidth * 0.055,
             ),
-            SizedBox(height: screenWidth * 0.01),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: screenWidth * 0.03,
-                fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-                color: isActive
-                    ? const Color(0xFF4ECDC4)
-                    : const Color.fromARGB(255, 138, 149, 147),
+            SizedBox(height: screenWidth * 0.008),
+            Flexible(
+              child: Text(
+                displayLabel,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+                  color: isActive
+                      ? const Color(0xFF4ECDC4)
+                      : const Color.fromARGB(255, 138, 149, 147),
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

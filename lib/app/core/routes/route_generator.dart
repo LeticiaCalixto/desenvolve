@@ -28,7 +28,7 @@ class RouteGenerator {
 
       case AppRoutes.home:
         return MaterialPageRoute(
-          builder: (_) => const MainNavigationPage(initialIndex: 1),
+          builder: (_) => const MainNavigationPage(initialIndex: 2),
           settings: settings,
         );
 
