@@ -402,7 +402,7 @@ class LoginPage extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: const Text(
-                      'Email ou senha incorretos. Use um dos emails autorizados com a senha "1234".',
+                      'Email ou senha incorretos. Verifique suas credenciais.',
                       style: TextStyle(color: Colors.white),
                     ),
                     backgroundColor: const Color(0xFFE74C3C),

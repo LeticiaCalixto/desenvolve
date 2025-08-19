@@ -139,6 +139,55 @@ class VaccinationPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFFFF3E0), Color(0xFFFFE0B2)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFFFF9800), width: 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.orange.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Text('⚠️ ', style: TextStyle(fontSize: 20)),
+                      Expanded(
+                        child: Text(
+                          'IMPORTANTE: Cuidados Após Vacinação',
+                          style: GoogleFonts.nunito(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFE65100),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Toque em cada vacina para conhecer os cuidados específicos, reações possíveis e quando procurar atendimento médico.',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: const Color(0xFFBF360C),
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 20),
             ...vaccineSchedule.map((item) {
               return _AgeGroupCard(
@@ -390,27 +439,221 @@ class _VaccineTileState extends State<_VaccineTile> {
   String _getVaccineInfo(String vaccine) {
     switch (vaccine) {
       case 'BCG':
-        return '🛡️ Protege contra formas graves de tuberculose.\n\n🎯 Aplicada no braço direito, logo após o nascimento.\n\n⚠️ Pode deixar uma pequena cicatriz, que é normal e esperada.';
+        return '''🛡️ PROTEÇÃO
+Protege contra formas graves de tuberculose.
+Aplicada no braço direito, logo após o nascimento.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Manter o local limpo e seco
+• Não aplicar pomadas ou cremes no local
+• Evitar espremer ou coçar
+• Observar evolução normal da cicatrização
+
+🔍 EVOLUÇÃO NORMAL
+• 2-3 semanas: pequena elevação avermelhada
+• 4-6 semanas: formação de pústula (normal)
+• 8-12 semanas: cicatrização com pequena cicatriz
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Vermelhidão local, pequena cicatriz
+Raras: Linfadenopatia (ínguas) regional
+🚨 Procurar atendimento: febre alta persistente, secreção excessiva''';
+
       case 'Hepatite B':
-        return '🛡️ Previne a infecção pelo vírus da hepatite B.\n\n🎯 Protege o fígado contra inflamações graves.\n\n💡 Muito importante para recém-nascidos.';
+        return '''🛡️ PROTEÇÃO
+Previne a infecção pelo vírus da hepatite B.
+Protege o fígado contra inflamações graves.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Compressas frias no local se houver dor
+• Manter hidratação adequada
+• Observar a criança nas primeiras 24h
+• Manter calendário de doses em dia
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Dor e vermelhidão no local, febre baixa
+Raras: Sonolência, irritabilidade leve
+🚨 Procurar atendimento: febre alta (>38.5°C), reações alérgicas, vômitos persistentes''';
+
       case 'Penta, VIP':
-        return '🛡️ Combina 5 vacinas em 1: difteria, tétano, coqueluche, hepatite B e Haemophilus influenzae tipo b.\n\n🎯 VIP previne a poliomielite.\n\n💪 Proteção múltipla com menos picadas!';
+        return '''🛡️ PROTEÇÃO
+Combina 5 vacinas: difteria, tétano, coqueluche, hepatite B e Haemophilus influenzae tipo b.
+VIP previne a poliomielite.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Oferecer líquidos com frequência
+• Usar roupas leves se houver febre
+• Dar banho morno se temperatura elevada
+• Compressas frias no local da aplicação
+• Antitérmico se prescrito pelo pediatra
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre, irritabilidade, sonolência, dor local
+Raras: Choro inconsolável por mais de 3h, convulsões febris
+🚨 Procurar atendimento: febre alta persistente (>39°C), convulsões, dificuldade respiratória''';
+
       case 'Meningocócica C':
-        return '🛡️ Previne contra meningite causada pelo meningococo tipo C.\n\n⚠️ Doença grave que pode ser fatal.\n\n🎯 Proteção essencial para bebês e crianças.';
+        return '''🛡️ PROTEÇÃO
+Previne meningite causada pelo meningococo tipo C.
+Doença grave que pode ser fatal.
+
+� CUIDADOS BÁSICOS APÓS A VACINA
+• Observar sinais de febre nas primeiras 48h
+• Manter ambiente ventilado
+• Oferecer bastante líquido
+• Repouso se a criança estiver sonolenta
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre baixa, irritabilidade, dor local
+Raras: Sonolência excessiva, perda de apetite
+🚨 Procurar atendimento: febre alta (>38.5°C), manchas na pele, rigidez de nuca''';
+
       case 'Rotavírus':
-        return '🛡️ Previne diarreia grave causada por rotavírus.\n\n💧 Evita desidratação severa em bebês.\n\n👶 Especialmente importante nos primeiros meses de vida.';
+        return '''🛡️ PROTEÇÃO
+Previne diarreia grave causada por rotavírus.
+Evita desidratação severa em bebês.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Manter aleitamento materno normal
+• Observar evacuações nas primeiras 24h
+• Higiene rigorosa das mãos
+• Hidratação adequada
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Irritabilidade leve, febre baixa
+Raras: Diarreia leve e temporária
+🚨 Procurar atendimento: vômitos persistentes, diarreia com sangue, sinais de desidratação''';
+
+      case 'Pneumocócica':
+        return '''�️ PROTEÇÃO
+Previne pneumonia, meningite e outras infecções causadas pelo pneumococo.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Compressas frias se dor local
+• Oferecer líquidos extra
+• Observar respiração da criança
+• Manter repouso se necessário
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Dor local, febre baixa, irritabilidade
+Raras: Sonolência, perda temporária de apetite
+🚨 Procurar atendimento: dificuldade respiratória, febre alta persistente, letargia''';
+
+      case 'Meningocócica':
+        return '''🛡️ PROTEÇÃO
+Previne contra meningite meningocócica.
+Proteção específica conforme tipo de meningococo.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Observar temperatura corporal
+• Manter ambiente calmo
+• Hidratação adequada
+• Observar sinais neurológicos
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre, irritabilidade, sonolência
+Raras: Dor de cabeça (em crianças maiores)
+🚨 Procurar atendimento: febre alta, vômitos, manchas roxas na pele''';
+
       case 'Tríplice viral':
-        return '🛡️ Protege contra sarampo, caxumba e rubéola.\n\n🎯 Três doenças em uma só vacina.\n\n✨ Proteção completa e duradoura.';
+        return '''🛡️ PROTEÇÃO
+Protege contra sarampo, caxumba e rubéola.
+Três doenças em uma só vacina.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Evitar contato com pessoas doentes
+• Proteger do sol se houver erupção
+• Manter hidratação
+• Observar temperatura entre 5°-12° dia
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre (5-12 dias após), manchas avermelhadas leves
+Raras: Dor nas articulações, ínguas
+🚨 Procurar atendimento: febre muito alta, dificuldade respiratória, convulsões''';
+
       case 'Tetraviral':
-        return '🛡️ Tríplice viral + varicela (catapora).\n\n🎯 Quatro doenças em uma só vacina.\n\n💪 Proteção ampliada e eficaz.';
+        return '''🛡️ PROTEÇÃO
+Tríplice viral + varicela (catapora).
+Quatro doenças em uma só vacina.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Cortar unhas curtas para evitar arranhões
+• Banhos mornos se houver erupção
+• Roupas de algodão, leves
+• Evitar aspirina se houver febre
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre, erupção leve semelhante à catapora
+Raras: Dor de cabeça, mal-estar geral
+🚨 Procurar atendimento: erupção extensa, febre alta persistente, dificuldade respiratória''';
+
       case 'Febre amarela':
-        return '🛡️ Previne a febre amarela, doença transmitida por mosquitos.\n\n🌿 Especialmente importante em áreas endêmicas.\n\n💡 Proteção por toda a vida com uma dose.';
+        return '''🛡️ PROTEÇÃO
+Previne a febre amarela, doença transmitida por mosquitos.
+Proteção por toda a vida com uma dose.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Evitar exercícios intensos por 3 dias
+• Proteger-se de mosquitos
+• Manter hidratação adequada
+• Observar sintomas por 10 dias
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Dor local, febre baixa, mal-estar leve
+Raras: Dor de cabeça, dores musculares
+🚨 Procurar atendimento: febre alta com icterícia (amarelão), vômitos persistentes''';
+
       case 'DTP, VOP':
-        return '🛡️ DTP: difteria, tétano e coqueluche.\n🛡️ VOP: poliomielite oral.\n\n💪 Reforça a proteção já iniciada.\n\n🎯 Mantém a imunidade em dia.';
+        return '''🛡️ PROTEÇÃO
+DTP: difteria, tétano e coqueluche.
+VOP: poliomielite oral (gotinha).
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Manter calendário de reforços
+• Compressas frias no local da injeção
+• Não oferecer alimentos 30min após VOP
+• Higiene rigorosa das mãos
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Febre, irritabilidade, dor local
+Raras: Sonolência excessiva, perda de apetite
+🚨 Procurar atendimento: febre alta persistente, convulsões, paralisia''';
+
       case 'Hepatite A':
-        return '🛡️ Previne a hepatite A, infecção que afeta o fígado.\n\n🍎 Transmitida por alimentos e água contaminados.\n\n✨ Proteção duradoura com duas doses.';
+        return '''🛡️ PROTEÇÃO
+Previne a hepatite A, infecção que afeta o fígado.
+Transmitida por alimentos e água contaminados.
+
+🏥 CUIDADOS BÁSICOS APÓS A VACINA
+• Higiene alimentar rigorosa
+• Lavar bem frutas e verduras
+• Água tratada ou fervida
+• Observar cor da urina e fezes
+
+⚠️ REAÇÕES POSSÍVEIS
+Comuns: Dor local, febre baixa, fadiga leve
+Raras: Dor abdominal leve, perda de apetite
+🚨 Procurar atendimento: icterícia (amarelão), urina escura, vômitos intensos''';
+
       default:
-        return '🛡️ Vacina importante para o desenvolvimento saudável da criança.\n\n💙 Conversa sempre com o pediatra sobre o calendário vacinal.\n\n📅 Manter as vacinas em dia é um ato de amor e cuidado.';
+        return '''🛡️ PROTEÇÃO
+Vacina importante para o desenvolvimento saudável da criança.
+
+🏥 CUIDADOS GERAIS APÓS VACINAÇÃO
+• Observar a criança nas primeiras 24-48h
+• Oferecer líquidos com frequência
+• Manter ambiente ventilado e calmo
+• Anotar data e tipo de vacina
+
+⚠️ SINAIS DE ALERTA
+• Febre alta persistente (>39°C)
+• Dificuldade respiratória
+• Convulsões ou alterações neurológicas
+• Reações alérgicas (inchaço, urticária)
+
+💙 LEMBRE-SE
+Conversar sempre com o pediatra sobre o calendário vacinal.
+Manter as vacinas em dia é um ato de amor e cuidado.''';
     }
   }
 }
