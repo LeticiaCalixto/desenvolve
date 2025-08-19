@@ -95,6 +95,12 @@ class DevelopmentPage extends StatelessWidget {
                 'Massagens suaves',
                 'Tempo de bruços supervisionado',
               ],
+              warnings: [
+                'Não sustenta a cabeça aos 3 meses',
+                'Não segue objetos com os olhos',
+                'Não reage a sons altos',
+                'Não sorri aos 2 meses',
+              ],
             ),
             const SizedBox(height: 16),
             const _DevelopmentCard(
@@ -112,6 +118,12 @@ class DevelopmentPage extends StatelessWidget {
                 'Leitura de livrinhos',
                 'Músicas e cantigas',
                 'Estimular alcançar objetos',
+              ],
+              warnings: [
+                'Não rola ou senta com apoio',
+                'Não tenta pegar objetos',
+                'Não balbucia ou faz sons',
+                'Não responde ao próprio nome',
               ],
             ),
             const SizedBox(height: 16),
@@ -131,6 +143,12 @@ class DevelopmentPage extends StatelessWidget {
                 'Esconde-esconde simples',
                 'Incentivar movimentos',
               ],
+              warnings: [
+                'Não senta sem apoio aos 9 meses',
+                'Não tenta se mover (engatinhar)',
+                'Não transfere objetos entre as mãos',
+                'Não responde ao nome',
+              ],
             ),
             const SizedBox(height: 16),
             const _DevelopmentCard(
@@ -148,6 +166,12 @@ class DevelopmentPage extends StatelessWidget {
                 'Jogos de imitação',
                 'Livros com figuras',
                 'Brincadeiras de encaixe',
+              ],
+              warnings: [
+                'Não fica em pé aos 12 meses',
+                'Não fala nenhuma palavra',
+                'Não imita gestos como acenar',
+                'Perda de habilidades adquiridas',
               ],
             ),
             const SizedBox(height: 16),
@@ -167,6 +191,12 @@ class DevelopmentPage extends StatelessWidget {
                 'Jogos de empilhar',
                 'Atividades artísticas simples',
               ],
+              warnings: [
+                'Não caminha aos 18 meses',
+                'Não fala pelo menos 5-10 palavras',
+                'Não aponta para objetos',
+                'Não demonstra interesse em brincar',
+              ],
             ),
             const SizedBox(height: 16),
             const _DevelopmentCard(
@@ -184,6 +214,42 @@ class DevelopmentPage extends StatelessWidget {
                 'Leitura interativa',
                 'Brincadeiras criativas',
                 'Rotinas de autonomia',
+              ],
+              warnings: [
+                'Não corre aos 24 meses',
+                'Não forma frases de 2 palavras',
+                'Não imita atividades simples',
+                'Regressão em habilidades',
+              ],
+            ),
+            const SizedBox(height: 16),
+            const _DevelopmentCard(
+              emoji: '🎓',
+              title: '3-5 anos',
+              color: Color(0xFFF3E5F5),
+              milestones: [
+                'Pedala triciclo ou bicicleta',
+                'Fala em frases completas',
+                'Brinca com outras crianças',
+                'Reconhece letras e números',
+                'Demonstra empatia',
+                'Segue regras simples',
+              ],
+              activities: [
+                'Jogos educativos',
+                'Atividades artísticas complexas',
+                'Brincadeiras em grupo',
+                'Contação de histórias',
+                'Exercícios de coordenação',
+                'Preparação para escola',
+              ],
+              warnings: [
+                'Dificuldade extrema para pedalar',
+                'Não forma frases de 4-5 palavras',
+                'Evita interação com outras crianças',
+                'Não reconhece letras do próprio nome',
+                'Comportamentos muito agressivos',
+                'Não segue instruções simples',
               ],
             ),
             const SizedBox(height: 20),
@@ -241,6 +307,7 @@ class _DevelopmentCard extends StatelessWidget {
   final String title;
   final List<String> milestones;
   final List<String> activities;
+  final List<String> warnings;
   final Color color;
 
   const _DevelopmentCard({
@@ -248,6 +315,7 @@ class _DevelopmentCard extends StatelessWidget {
     required this.title,
     required this.milestones,
     required this.activities,
+    required this.warnings,
     required this.color,
   });
 
@@ -365,6 +433,44 @@ class _DevelopmentCard extends StatelessWidget {
                       height: 6,
                       decoration: BoxDecoration(
                         color: Colors.orange[600],
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        item,
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          color: Colors.grey[700],
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+          const SizedBox(height: 12),
+          Text(
+            '⚠️ Fique atento:',
+            style: GoogleFonts.nunito(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              color: Colors.red[700],
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...warnings.map((item) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 6),
+                      width: 6,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: Colors.red[600],
                         borderRadius: BorderRadius.circular(3),
                       ),
                     ),
