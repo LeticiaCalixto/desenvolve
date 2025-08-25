@@ -19,54 +19,60 @@ class VaccinationPage extends StatelessWidget {
       {
         'age': '2 meses',
         'emoji': '🍼',
-        'vaccines': [
-          'Penta, VIP',
-          'Pneumocócica',
-          'Rotavírus',
-          'Meningocócica C'
-        ],
+        'vaccines': ['Penta', 'VIP', 'Pneumocócica', 'Rotavírus'],
         'color': const Color(0xFFE3F2FD),
       },
       {
         'age': '3 meses',
         'emoji': '👼',
-        'vaccines': ['Meningocócica'],
+        'vaccines': ['Meningocócica C'],
         'color': const Color(0xFFFFF3E0),
       },
       {
         'age': '4 meses',
         'emoji': '😊',
-        'vaccines': [
-          'Penta, VIP',
-          'Pneumocócica',
-          'Rotavírus',
-          'Meningocócica C'
-        ],
+        'vaccines': ['Penta', 'VIP', 'Pneumocócica', 'Rotavírus'],
         'color': const Color(0xFFF3E5F5),
+      },
+      {
+        'age': '5 meses',
+        'emoji': '👶',
+        'vaccines': ['Meningocócica C'],
+        'color': Color(0xFFE1F5FE),
       },
       {
         'age': '6 meses',
         'emoji': '👨‍🍼',
-        'vaccines': ['Penta, VIP'],
+        'vaccines': ['Penta', 'VIP', 'Covid-19', 'Influenza trivalente'],
         'color': const Color(0xFFE0F2F1),
       },
       {
         'age': '9 meses',
         'emoji': '🧸',
-        'vaccines': ['Febre amarela'],
+        'vaccines': ['Febre amarela', 'Covid-19 (2ª dose)'],
         'color': const Color(0xFFFFF8E1),
       },
       {
         'age': '12 meses',
         'emoji': '🎂',
-        'vaccines': ['Tríplice viral', 'Pneumocócica', 'Meningocócica C'],
+        'vaccines': ['Tríplice viral', 'Pneumocócica', 'Meningocócica ACWY'],
         'color': const Color(0xFFFCE4EC),
       },
       {
         'age': '15 meses',
         'emoji': '🚶',
-        'vaccines': ['DTP, VOP', 'Hepatite A', 'Tetraviral'],
+        'vaccines': ['DTP VIP', 'Hepatite A', 'Tetraviral'],
         'color': const Color(0xFFE8EAF6),
+      },
+      {
+        'age': '4 anos',
+        'emoji': '🧒',
+        'vaccines': [
+          'DTP (2ª dose reforço) – difteria, tétano, coqueluche',
+          'Febre amarela (1 dose reforço)',
+          'Varicela (1 dose) – varicela ou catapora',
+        ],
+        'color': Color(0xFFFFF9C4),
       },
     ];
 
